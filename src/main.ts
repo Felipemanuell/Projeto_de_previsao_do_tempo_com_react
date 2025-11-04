@@ -1,0 +1,20 @@
+/* eslint-disable prettier/prettier */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+/* eslint-disable @typescript-eslint/unbound-method */
+/* eslint-disable prettier/prettier */
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+
+  process.env.TZ = '03:00';
+
+  app.useGlobalPipes(new ValidationPipe());
+
+  app.enableCors;
+
+  await app.listen(process.env.PORT ?? 4000);
+}
+bootstrap();
